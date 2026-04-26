@@ -9,7 +9,7 @@ The goal was to understand how an IDS works in practice, from installation and c
 - **OS:** Kali Linux (Virtual Machine)
 - **Hypervisor:** Proxmox (installed on spare desktop)
 - **Network Interface:** eth0
-- **IP Address:** 192.168.1.235
+- **IP Address:** 192.168.x.x (private home network)
 - **Suricata Version:** 8.0.4
 
 ## Steps Completed
@@ -63,7 +63,7 @@ First identified my active network interface and IP address:
 ip a
 ```
 
-This showed my interface was **eth0** with IP address **192.168.1.235**
+This showed my interface was **eth0** with IP address **192.168.x.x (private home network)**
 
 Then launched Suricata in system mode listening on eth0:
 
