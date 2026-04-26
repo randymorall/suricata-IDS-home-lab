@@ -11,7 +11,6 @@ The goal was to understand how an IDS works in practice, from installation and c
 - **Network Interface:** eth0
 - **IP Address:** 192.168.1.235
 - **Suricata Version:** 8.0.4
-
 ## Steps Completed
 
 ### Installation
