@@ -20,7 +20,7 @@ The goal was to understand how an IDS works in practice, from installation and c
 
 ### Installation
 
-- Updated package list and installed Suricata using the following commands:
+Updated package list and installed Suricata using the following commands:
 
 ```bash
 sudo apt update && sudo apt upgrade -y
@@ -38,7 +38,7 @@ Output confirmed Suricata 8.0.4 was installed and running.
 
 ### Configuration
 
-- Opened the Suricata configuration file in VS Code using:
+Opened the Suricata configuration file in VS Code using:
 
 ```bash
 sudo code /etc/suricata/suricata.yaml --no-sandbox --user-data-dir=/root/.vscode-root
@@ -59,7 +59,7 @@ sudo suricata-update
 ```
 
 This automatically downloaded and loaded over 65,000 detection rules into Suricata.
-<img width="1691" height="644" alt="Screenshot 2026-04-26 at 12 53 59 PM" src="https://github.com/user-attachments/assets/2b71cf83-069e-4e0e-b36e-64e90cb3cffc" />
+
 
 
 ### Running Suricata
@@ -87,7 +87,7 @@ Confirmed engine started successfully with the following output:
 
 ### Alert Monitoring
 
-- Opened a second terminal and streamed the Suricata log file in real time:
+Opened a second terminal and streamed the Suricata log file in real time:
 
 ```bash
 sudo tail -f /var/log/suricata/eve.json | grep "alert"
@@ -119,7 +119,7 @@ This displayed each alert in clean JSON format showing:
 
 ### Traffic Generation
 
-- Opened a third terminal and generated ICMP traffic by pinging Google's DNS server:
+Opened a third terminal and generated ICMP traffic by pinging Google's DNS server:
 
 ```bash
 ping -c 4 8.8.8.8
@@ -168,16 +168,4 @@ real network traffic in real time.
 - **ping/ICMP** — Used to generate test network traffic
 - **Emerging Threats ruleset** — Open source IDS rule database
 
-## Next Steps
-- **Expand the home lab** — Add a Windows Server VM to practice 
-  Active Directory and endpoint monitoring
-- **Set up Suricata in IPS mode** — Move from detection only to 
-  actively blocking threats
-- **Write custom Suricata rules** — Create rules to detect specific 
-  traffic patterns on my network
-- **Integrate with a SIEM** — Forward Suricata alerts into a tool 
-  like Splunk or Security Onion for centralized log analysis
-- **Practice with more Kali Linux tools** — Use tools like Nmap to 
-  generate more complex traffic and see how Suricata responds
-- **Continue WGU Cybersecurity degree** — Apply these hands-on skills 
-  to coursework in network security and incident response
+
