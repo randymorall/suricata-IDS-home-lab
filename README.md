@@ -15,28 +15,28 @@ network traffic and generating real-world alerts.
 
 ## Steps Completed
 
-###Installation
+### Installation
 - Installed Suricata using apt package manager
 - Verified installation with version check
 
-###Configuration
+### Configuration
 - Edited suricata.yaml in VS Code
 - Verified HOME_NET covered my subnet
 - Confirmed eve-log JSON output was enabled
 
-###Rule Updates
+### Rule Updates
 - Downloaded Emerging Threats ruleset using suricata-update
 - Loaded 65,000+ detection rules
 
-###Running Suricata
+### Running Suricata
 - Launched Suricata on eth0 interface
 - Confirmed engine started successfully
 
-###Alert Monitoring
+### Alert Monitoring
 - Streamed eve.json log in real time
 - Used jq to filter and display clean alert output
 
-###Traffic Generation
+### Traffic Generation
 - Pinged 8.8.8.8 to generate ICMP traffic
 - Used curl to trigger test IDS rule
 - Observed real alerts firing with full details
