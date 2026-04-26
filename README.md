@@ -1,10 +1,7 @@
 # Home Lab — Suricata IDS on Kali Linux
 
 ## Overview
-This lab demonstrates setting up and configuring Suricata, an open-source 
-network intrusion detection system, on a Kali Linux virtual machine running 
-on Proxmox. The goal was to understand how IDS works by capturing live 
-network traffic and generating real-world alerts.
+For this lab, I repurposed a spare computer and turned it into a virtualization server using Proxmox. Inside Proxmox, I created a Kali Linux virtual machine to run this home lab. I then installed Suricata, an open-source network intrusion detection system, to monitor live network traffic and generate real-world alerts. The goal was to understand how an IDS works in practice — from installation and configuration to detecting actual network activity in real time.
 
 ## Lab Environment
 - **OS:** Kali Linux (Virtual Machine)
