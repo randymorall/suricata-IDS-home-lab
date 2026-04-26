@@ -11,11 +11,11 @@ The goal was to understand how an IDS works in practice, from installation and c
 - **Network Interface:** eth0
 - **IP Address:** 192.168.1.235
 - **Suricata Version:** 8.0.4
+
 ## Steps Completed
 
 ### Installation
-- Installed Suricata using apt package manager
-- Verified installation with version check
+
 - Updated package list and installed Suricata using the following commands:
 
 ```bash
@@ -32,9 +32,7 @@ suricata --version
 Output confirmed Suricata 8.0.4 was installed and running.
 
 ### Configuration
-- Edited suricata.yaml in VS Code
-- Verified HOME_NET covered my subnet
-- Confirmed eve-log JSON output was enabled
+
 - Opened the Suricata configuration file in VS Code using:
 
 ```bash
@@ -48,9 +46,6 @@ Made the following changes inside the file:
 - Verified **eve-log** was enabled with JSON output and filename `eve.json`
 
 ### Rule Updates
-- Downloaded Emerging Threats ruleset using suricata-update
-- Loaded 65,000+ detection rules
-- ### Step 3: Rule Updates
 
 Downloaded and installed the latest Emerging Threats ruleset using:
 
@@ -84,8 +79,7 @@ Confirmed engine started successfully with the following output:
 - Engine started
 
 ### Alert Monitoring
-- Streamed eve.json log in real time
-- Used jq to filter and display clean alert output
+
 - Opened a second terminal and streamed the Suricata log file in real time:
 
 ```bash
@@ -113,9 +107,7 @@ This displayed each alert in clean JSON format showing:
 - **severity** — how serious the alert was on a scale of 1 to 4
 
 ### Traffic Generation
-- Pinged 8.8.8.8 to generate ICMP traffic
-- Used curl to trigger test IDS rule
-- Observed real alerts firing with full details
+
 - Opened a third terminal and generated ICMP traffic by pinging Google's DNS server:
 
 ```bash
