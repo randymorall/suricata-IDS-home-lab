@@ -4,6 +4,8 @@
 For this lab, I repurposed a spare computer and turned it into a virtualization server using Proxmox. Inside Proxmox, I created a Kali Linux virtual machine to run this home lab.
 I then installed Suricata, an open-source network intrusion detection system, to monitor live network traffic and generate real world alerts.
 The goal was to understand how an IDS works in practice, from installation and configuration to detecting actual network activity in real time.
+<img width="3292" height="1242" alt="Screenshot 2026-04-26 at 12 53 11 PM" src="https://github.com/user-attachments/assets/d30831f8-d62c-4d8d-9b00-7626618562a0" />
+
 
 ## Lab Environment
 - **OS:** Kali Linux (Virtual Machine)
@@ -11,11 +13,12 @@ The goal was to understand how an IDS works in practice, from installation and c
 - **Network Interface:** eth0
 - **IP Address:** 192.168.x.x (private home network)
 - **Suricata Version:** 8.0.4
+<img width="1708" height="1318" alt="Screenshot 2026-04-26 at 4 59 28 PM" src="https://github.com/user-attachments/assets/25b29e10-5833-468d-a581-21c72a1bc85a" />
+
 
 ## Steps Completed
 
 ### Installation
-<img width="1118" height="182" alt="Screenshot 2026-04-26 at 3 23 06 PM" src="https://github.com/user-attachments/assets/0026a853-9110-4a7a-8db9-7bdb82d2f5dd" />
 
 - Updated package list and installed Suricata using the following commands:
 
@@ -31,6 +34,7 @@ suricata --version
 ```
 
 Output confirmed Suricata 8.0.4 was installed and running.
+<img width="1118" height="182" alt="Screenshot 2026-04-26 at 3 23 06 PM" src="https://github.com/user-attachments/assets/0026a853-9110-4a7a-8db9-7bdb82d2f5dd" />
 
 ### Configuration
 
@@ -55,6 +59,8 @@ sudo suricata-update
 ```
 
 This automatically downloaded and loaded over 65,000 detection rules into Suricata.
+<img width="1691" height="644" alt="Screenshot 2026-04-26 at 12 53 59 PM" src="https://github.com/user-attachments/assets/2b71cf83-069e-4e0e-b36e-64e90cb3cffc" />
+
 
 ### Running Suricata
 
@@ -76,6 +82,8 @@ Confirmed engine started successfully with the following output:
 - Suricata 8.0.4 running in SYSTEM mode
 - Threads created: W2 FM1 FR1
 - Engine started
+<img width="1691" height="644" alt="Screenshot 2026-04-26 at 12 53 59 PM" src="https://github.com/user-attachments/assets/9f96fbc6-9976-4927-b501-60a5a63ec13f" />
+
 
 ### Alert Monitoring
 
@@ -104,6 +112,10 @@ This displayed each alert in clean JSON format showing:
 - **signature** — the rule that triggered
 - **category** — type of threat detected
 - **severity** — how serious the alert was on a scale of 1 to 4
+<img width="1684" height="576" alt="Screenshot 2026-04-26 at 12 53 41 PM" src="https://github.com/user-attachments/assets/4d64e464-ae38-4631-ad6f-0f03e243c258" />
+<img width="1554" height="650" alt="Screenshot 2026-04-26 at 12 53 22 PM" src="https://github.com/user-attachments/assets/aa3a56c8-bbfb-4cbd-8a36-1aac75b6f87a" />
+
+
 
 ### Traffic Generation
 
@@ -124,6 +136,7 @@ Then triggered a test IDS rule using a URL specifically designed to test IDS det
 ```bash
 curl http://testmynids.org/uid/index.html
 ```
+<img width="1552" height="573" alt="Screenshot 2026-04-26 at 12 53 33 PM" src="https://github.com/user-attachments/assets/158f1653-07bd-4c74-9ae6-6f5ffb5ffc4a" />
 
 Result:
 - Server responded with: uid=0(root) gid=0(root) groups=0(root)
