@@ -1,7 +1,9 @@
 # Home Lab — Suricata IDS on Kali Linux
 
 ## Overview
-For this lab, I repurposed a spare computer and turned it into a virtualization server using Proxmox. Inside Proxmox, I created a Kali Linux virtual machine to run this home lab. I then installed Suricata, an open-source network intrusion detection system, to monitor live network traffic and generate real-world alerts. The goal was to understand how an IDS works in practice — from installation and configuration to detecting actual network activity in real time.
+For this lab, I repurposed a spare computer and turned it into a virtualization server using Proxmox. Inside Proxmox, I created a Kali Linux virtual machine to run this home lab.
+I then installed Suricata, an open-source network intrusion detection system, to monitor live network traffic and generate real world alerts.
+The goal was to understand how an IDS works in practice, from installation and configuration to detecting actual network activity in real time.
 
 ## Lab Environment
 - **OS:** Kali Linux (Virtual Machine)
@@ -15,41 +17,156 @@ For this lab, I repurposed a spare computer and turned it into a virtualization 
 ### Installation
 - Installed Suricata using apt package manager
 - Verified installation with version check
+- Updated package list and installed Suricata using the following commands:
+
+```bash
+sudo apt update && sudo apt upgrade -y
+sudo apt install suricata -y
+```
+
+Verified successful installation:
+
+```bash
+suricata --version
+```
+
+Output confirmed Suricata 8.0.4 was installed and running.
 
 ### Configuration
 - Edited suricata.yaml in VS Code
 - Verified HOME_NET covered my subnet
 - Confirmed eve-log JSON output was enabled
+- Opened the Suricata configuration file in VS Code using:
+
+```bash
+sudo code /etc/suricata/suricata.yaml --no-sandbox --user-data-dir=/root/.vscode-root
+```
+
+Made the following changes inside the file:
+
+- Verified **HOME_NET** was already set to cover my subnet `192.168.1.0/24`
+- Confirmed **default-log-dir** was set to `/var/log/suricata/`
+- Verified **eve-log** was enabled with JSON output and filename `eve.json`
 
 ### Rule Updates
 - Downloaded Emerging Threats ruleset using suricata-update
 - Loaded 65,000+ detection rules
+- ### Step 3: Rule Updates
+
+Downloaded and installed the latest Emerging Threats ruleset using:
+
+```bash
+sudo suricata-update
+```
+
+This automatically downloaded and loaded over 65,000 detection rules into Suricata.
 
 ### Running Suricata
 - Launched Suricata on eth0 interface
 - Confirmed engine started successfully
 
+First identified my active network interface and IP address:
+
+```bash
+ip a
+```
+
+This showed my interface was **eth0** with IP address **192.168.1.235**
+
+Then launched Suricata in system mode listening on eth0:
+
+```bash
+sudo suricata -c /etc/suricata/suricata.yaml -i eth0
+```
+
+Confirmed engine started successfully with the following output:
+- Suricata 8.0.4 running in SYSTEM mode
+- Threads created: W2 FM1 FR1
+- Engine started
+
 ### Alert Monitoring
 - Streamed eve.json log in real time
 - Used jq to filter and display clean alert output
+- Opened a second terminal and streamed the Suricata log file in real time:
+
+```bash
+sudo tail -f /var/log/suricata/eve.json | grep "alert"
+```
+
+Then installed jq for cleaner, formatted output:
+
+```bash
+sudo apt install jq -y
+```
+
+Ran the improved alert filter:
+
+```bash
+sudo tail -f /var/log/suricata/eve.json | jq 'select(.event_type=="alert")'
+```
+
+This displayed each alert in clean JSON format showing:
+- **timestamp** — when the alert fired
+- **in_iface** — which interface detected it
+- **event_type** — confirmed as alert
+- **signature** — the rule that triggered
+- **category** — type of threat detected
+- **severity** — how serious the alert was on a scale of 1 to 4
 
 ### Traffic Generation
 - Pinged 8.8.8.8 to generate ICMP traffic
 - Used curl to trigger test IDS rule
 - Observed real alerts firing with full details
+- Opened a third terminal and generated ICMP traffic by pinging Google's DNS server:
+
+```bash
+ping -c 4 8.8.8.8
+```
+
+Result:
+- 4 packets transmitted
+- 4 packets received
+- 0% packet loss
+- Alerts fired in real time on the monitoring terminal
+
+Then triggered a test IDS rule using a URL specifically designed to test IDS detection:
+
+```bash
+curl http://testmynids.org/uid/index.html
+```
+
+Result:
+- Server responded with: uid=0(root) gid=0(root) groups=0(root)
+- Multiple alerts immediately fired in the monitoring terminal
+- Alerts showed full details including signature, category and severity
+
+Both tests confirmed Suricata was successfully detecting and logging 
+real network traffic in real time.
 
 ## What I Learned
-- How to configure an IDS on Linux from the command line
-- How to read and interpret IDS alert logs in JSON format
-- The difference between IDS (detection) and IPS (prevention) mode
+
+- How to install and configure Suricata on a Linux system using the command line
+- How to edit system configuration files using VS Code on Kali Linux
+- How to identify my network interface and IP address using the `ip a` command
+- How to update and load over 65,000 detection rules using `suricata-update`
+- How to read and interpret IDS alerts in JSON format using `jq`
+- The difference between IDS (detection only) and IPS (active blocking) mode
+- How to generate test traffic to verify an IDS is working correctly
+- How to build and document a home lab using Proxmox as a virtualization platform
 
 ## Tools Used
-- Suricata 8.0.4
-- Kali Linux
-- Proxmox
-- VS Code
-- jq
 
+- **Suricata 8.0.4** — Network IDS/IPS engine
+- **Kali Linux** — Security-focused Linux distribution
+- **Proxmox** — Virtualization platform (hypervisor)
+- **VS Code** — Configuration file editor
+- **jq** — JSON parser for alert filtering
+- **Nmap** — wait, did you run nmap during the lab?
+- **curl** — Used to trigger test IDS rules
+- **ping/ICMP** — Used to generate test network traffic
+- **Emerging Threats ruleset** — Open source IDS rule database
+
+## Next Steps
 ## Next Steps
 - Write custom Suricata rules
 - Set up IPS mode to actively block threats
