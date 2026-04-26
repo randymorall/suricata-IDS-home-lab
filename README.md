@@ -56,8 +56,6 @@ sudo suricata-update
 This automatically downloaded and loaded over 65,000 detection rules into Suricata.
 
 ### Running Suricata
-- Launched Suricata on eth0 interface
-- Confirmed engine started successfully
 
 First identified my active network interface and IP address:
 
@@ -152,7 +150,6 @@ real network traffic in real time.
 - **Proxmox** — Virtualization platform (hypervisor)
 - **VS Code** — Configuration file editor
 - **jq** — JSON parser for alert filtering
-- **Nmap** — wait, did you run nmap during the lab?
 - **curl** — Used to trigger test IDS rules
 - **ping/ICMP** — Used to generate test network traffic
 - **Emerging Threats ruleset** — Open source IDS rule database
