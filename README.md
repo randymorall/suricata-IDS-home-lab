@@ -1,4 +1,4 @@
-# Home Lab — Suricata IDS on Kali Linux
+ # Home Lab — Suricata IDS on Kali Linux
 
 ## Overview
 For this lab, I repurposed a spare computer and turned it into a virtualization server using Proxmox. Inside Proxmox, I created a Kali Linux virtual machine to run this home lab.
@@ -15,6 +15,7 @@ The goal was to understand how an IDS works in practice, from installation and c
 ## Steps Completed
 
 ### Installation
+<img width="1118" height="182" alt="Screenshot 2026-04-26 at 3 23 06 PM" src="https://github.com/user-attachments/assets/0026a853-9110-4a7a-8db9-7bdb82d2f5dd" />
 
 - Updated package list and installed Suricata using the following commands:
 
