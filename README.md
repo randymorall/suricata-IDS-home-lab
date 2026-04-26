@@ -158,7 +158,15 @@ real network traffic in real time.
 - **Emerging Threats ruleset** — Open source IDS rule database
 
 ## Next Steps
-## Next Steps
-- Write custom Suricata rules
-- Set up IPS mode to actively block threats
-- Integrate alerts into a SIEM dashboard
+- **Expand the home lab** — Add a Windows Server VM to practice 
+  Active Directory and endpoint monitoring
+- **Set up Suricata in IPS mode** — Move from detection only to 
+  actively blocking threats
+- **Write custom Suricata rules** — Create rules to detect specific 
+  traffic patterns on my network
+- **Integrate with a SIEM** — Forward Suricata alerts into a tool 
+  like Splunk or Security Onion for centralized log analysis
+- **Practice with more Kali Linux tools** — Use tools like Nmap to 
+  generate more complex traffic and see how Suricata responds
+- **Continue WGU Cybersecurity degree** — Apply these hands-on skills 
+  to coursework in network security and incident response
